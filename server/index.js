@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 2000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -40,7 +40,7 @@ app.post('/bfhl', (req, res) => {
   });
 });
 
-app.get('/bfhl', (req, res) => {
+app.get('/bfhl', (req,res) => {
   res.status(200).json({ operation_code: 1 });
 });
 
