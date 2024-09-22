@@ -4,23 +4,18 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
-// POST Endpoint for '/bfhl'
 app.post('/bfhl', (req, res) => {
-  const { data, file_b64, email, roll_number } = req.body;
+  const { data, file_b64} = req.body;
 
-  // Extract numbers and alphabets
   const numbers = data.filter(item => !isNaN(item));
   const alphabets = data.filter(item => isNaN(item));
 
-  // Get highest lowercase alphabet
   const lowercaseAlphabets = alphabets.filter(char => char === char.toLowerCase());
   const highestLowercase = lowercaseAlphabets.length ? [lowercaseAlphabets.sort().reverse()[0]] : [];
 
-  // File validation logic
   let file_valid = false;
   let file_mime_type = '';
   let file_size_kb = 0;
@@ -31,7 +26,6 @@ app.post('/bfhl', (req, res) => {
     file_valid = true;
   }
 
-  // Send response
   res.status(200).json({
     is_success: true,
     user_id: 'srinivas_sobhit_kintali_22082003',
@@ -46,12 +40,10 @@ app.post('/bfhl', (req, res) => {
   });
 });
 
-// GET Endpoint for '/bfhl'
 app.get('/bfhl', (req, res) => {
   res.status(200).json({ operation_code: 1 });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

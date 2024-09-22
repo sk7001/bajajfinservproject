@@ -74,6 +74,7 @@ const App = () => {
         onClick={handleSubmit}
         style={{
           backgroundColor: '#007bff',
+          width:'100%',
           color: '#fff',
           border: 'none',
           padding: '10px 20px',
